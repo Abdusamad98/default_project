@@ -20,6 +20,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   void fetchProducts() async {
     emit(state.copyWith(
       myEnumState: MyEnumState.LOADING,
+      isNewProductAdded: false,
     ));
     try {
       var products = await productsRepository.getAllProducts();

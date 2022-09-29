@@ -48,15 +48,25 @@ class ProductsPage extends StatelessWidget {
           ),
           Text(
               "IsNewAdded:${context.watch<ProductsCubit>().state.isNewProductAdded}"),
+          BlocListener<ProductsCubit, ProductsState>(
+            listenWhen: (oldState, currentState) {
+              return oldState.myEnumState == currentState.myEnumState;
+            },
+            listener: (context, state) {
+              if (state.isNewProductAdded) {
+                BlocProvider.of<ProductsCubit>(context).fetchProducts();
+              }
+            },
+            child: SizedBox(),
+          ),
           TextButton(
             onPressed: () {
               context
                   .read<ProductsCubit>()
-                  .addProduct(name: 'MacBook Pro 13 Inch', id: 12);
+                  .addProduct(name: 'MacBook Pro 16 Inch', id: 12);
             },
             child: const Text("Add Product"),
           ),
-
         ],
       ),
       floatingActionButton: FloatingActionButton(
