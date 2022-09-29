@@ -8,15 +8,11 @@ class CustomCircularProgressbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Platform.isAndroid
-        ? const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          )
-        : const Scaffold(
-            body: Center(
-              child: CupertinoActivityIndicator(
-                radius: 25,
-              ),
-            ),
-          );
+        ? const Center(child: CircularProgressIndicator())
+        : const Center(
+      child: CupertinoActivityIndicator(
+        radius: 25,
+      ),
+    );
   }
 }
