@@ -25,7 +25,8 @@ class _TaskPageState extends State<TaskPage> {
         children: [
           ...List.generate(
             4,
-            (index) => getSingleRectangle(twoQuarters, colors[Random().nextInt(4)]),
+            (index) =>
+                getSingleRectangle(twoQuarters, colors[Random().nextInt(4)]),
           ),
         ],
       ),

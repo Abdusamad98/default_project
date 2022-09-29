@@ -12,7 +12,7 @@ class ProductsState extends Equatable {
   final MyEnumState myEnumState;
   final String errorText;
   final bool isNewProductAdded;
-
+//!
   ProductsState copyWith({
     List<ProductItem>? products,
     MyEnumState? myEnumState,
