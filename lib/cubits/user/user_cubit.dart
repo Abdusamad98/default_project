@@ -23,12 +23,12 @@ class UserCubit extends Cubit<UserState> {
     }
   }
   Future<void> updateUsers() async {
-    emit(UsersGetInProgress());
+    emit(UsersUpdateInProgress());
     try {
       var users = await _userRepository.getUsers();
-      emit(UsersGetInSuccess(users: users));
+      emit(UsersUpdateInSuccess(isUserUpdated:true));
     } catch (error) {
-      emit(UsersGetInFailure(errorText: error.toString()));
+      emit(UsersUpdateInFailure(errorText: error.toString()));
     }
   }
 }
