@@ -71,3 +71,13 @@ class MyApp extends StatelessWidget {
         );
   }
 }
+
+// Bo'yi umumiy screening 2/3 qismini tashkil etuvchi 4 ta to'g'ri to'rtburchak chizing.
+//1- shart Ularning barchasi bitta widgetda vertikal scroll bo'ladi
+//2- shart Harbir to'g'ri to'rtburchak BackgroundColor ga random rang olsin.
+//3- shart Shu UI ni 2 xil usulda chizing.
+
+
+
+
+
