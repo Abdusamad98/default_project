@@ -1,6 +1,8 @@
-import 'package:default_project/blocs/counter/counter_cubit.dart';
+import 'package:default_project/cubits/counter/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +17,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, productsPage);
+            },
+            icon: const Icon(Icons.add_circle),
+          )
+        ],
       ),
       body: BlocBuilder<CounterCubit, int>(
         builder: (context, state) {
