@@ -1,4 +1,5 @@
-import 'package:default_project/blocs/counter/counter_cubit.dart';
+import 'package:default_project/cubits/counter/counter_cubit.dart';
+import 'package:default_project/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,6 +38,11 @@ class _HomePageState extends State<HomePage> {
             onPressed: () => context.read<CounterCubit>().decrement(),
             child: const Icon(Icons.remove),
           ),
+          TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, booksPage);
+              },
+              child: Text("Books"))
         ],
       ),
     );

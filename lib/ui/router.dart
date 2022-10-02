@@ -1,3 +1,4 @@
+import 'package:default_project/ui/books/books_page.dart';
 import 'package:default_project/ui/home/home_page.dart';
 import 'package:default_project/ui/splash/splash_page.dart';
 import 'package:default_project/utils/constants.dart';
@@ -10,6 +11,8 @@ class MyRouter {
         return MaterialPageRoute(builder: (_) => SplashPage());
       case homePage:
         return MaterialPageRoute(builder: (_) => HomePage());
+      case booksPage:
+        return MaterialPageRoute(builder: (_) => BooksPage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
