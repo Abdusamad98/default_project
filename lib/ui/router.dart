@@ -1,5 +1,6 @@
 import 'package:default_project/ui/books/books_page.dart';
 import 'package:default_project/ui/home/home_page.dart';
+import 'package:default_project/ui/langugaes/languages_pages.dart';
 import 'package:default_project/ui/splash/splash_page.dart';
 import 'package:default_project/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ class MyRouter {
         return MaterialPageRoute(builder: (_) => HomePage());
       case booksPage:
         return MaterialPageRoute(builder: (_) => BooksPage());
+      case languagesPage:
+        return MaterialPageRoute(builder: (_) => LanguagesPage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

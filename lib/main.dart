@@ -64,20 +64,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return MaterialApp(
         builder: (context, child) {
           return StreamBuilder(
-              stream: Connectivity().onConnectivityChanged,
-              builder: (context, snapshot) {
-                if (snapshot.data == ConnectivityResult.none) {
-                  return const NoInternetPage();
-                }
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                      textScaleFactor: 1.0, alwaysUse24HourFormat: true),
-                  child: child!,
-                );
-              });
+            stream: Connectivity().onConnectivityChanged,
+            builder: (context, snapshot) {
+              if (snapshot.data == ConnectivityResult.none) {
+                return const NoInternetPage();
+              }
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0, alwaysUse24HourFormat: true),
+                child: child!,
+              );
+            },
+          );
         },
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

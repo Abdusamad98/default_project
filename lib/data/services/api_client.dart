@@ -29,7 +29,7 @@ class ApiClient {
             case DioErrorType.response:
               switch (error.response?.statusCode) {
                 case 400:
-                  throw BadRequestException(error.response?.data['message']);
+                  throw BadRequestException(error.requestOptions);
                 case 401:
                   throw UnauthorizedException(error.requestOptions);
                 case 404:

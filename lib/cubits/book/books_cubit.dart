@@ -9,11 +9,13 @@ part 'books_state.dart';
 class BooksCubit extends Cubit<BooksState> {
   BooksCubit({
     required this.booksRepository,
-  }) : super(BooksState(
-          books: [],
-          formzStatus: FormzStatus.pure,
-          errorText: "",
-        ));
+  }) : super(
+          BooksState(
+            books: [],
+            formzStatus: FormzStatus.pure,
+            errorText: "",
+          ),
+        );
 
   final BooksRepository booksRepository;
 

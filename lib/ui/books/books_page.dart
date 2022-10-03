@@ -62,18 +62,19 @@ class _BooksPageState extends State<BooksPage> {
             onPressed: () => context.read<BooksCubit>().getAllBooks(),
             child: const Icon(Icons.download),
           ),
+          const SizedBox(height: 20),
           FloatingActionButton(
             heroTag: "qwer",
             onPressed: () {
               BookModel bookModel = BookModel(
                 id: -1,
-                title: "Shum bola",
+                title: "Sho'x bola",
                 genre: 4,
                 isbn: "",
                 language: 0,
                 numberOfPages: 200,
                 price: 30000,
-                publisherId: 3,
+                publisherId: 5,
                 publishYear: 2022,
               );
               context.read<BooksCubit>().addBook(bookModel);
