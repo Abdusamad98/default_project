@@ -1,5 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:default_project/blocs/counter/counter_cubit.dart';
+import 'package:default_project/cubits/counter/counter_cubit.dart';
 import 'package:default_project/data/local/storage.dart';
 import 'package:default_project/ui/no_internet/no_internet_page.dart';
 import 'package:default_project/ui/router.dart';
@@ -35,20 +35,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        // builder: (context, child) {
-        //   return StreamBuilder(
-        //       stream: Connectivity().onConnectivityChanged,
-        //       builder: (context, snapshot) {
-        //         if (snapshot.data == ConnectivityResult.none) {
-        //           return const NoInternetPage();
-        //         }
-        //         return MediaQuery(
-        //           data: MediaQuery.of(context).copyWith(
-        //               textScaleFactor: 1.0, alwaysUse24HourFormat: true),
-        //           child: child!,
-        //         );
-        //       });
-        // },
+        builder: (context, child) {
+          return StreamBuilder(
+              stream: Connectivity().onConnectivityChanged,
+              builder: (context, snapshot) {
+                if (snapshot.data == ConnectivityResult.none) {
+                  return const NoInternetPage();
+                }
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                      textScaleFactor: 1.0, alwaysUse24HourFormat: true),
+                  child: child!,
+                );
+              });
+        },
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
