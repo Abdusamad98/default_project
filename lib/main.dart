@@ -6,6 +6,7 @@ import 'package:default_project/cubits/publishers/publishers_cubit.dart';
 import 'package:default_project/data/local/storage.dart';
 import 'package:default_project/data/repositories/books_repository.dart';
 import 'package:default_project/data/repositories/helper_repository.dart';
+import 'package:default_project/data/repositories/publishers_repository.dart';
 import 'package:default_project/data/services/api_client.dart';
 import 'package:default_project/data/services/api_provider.dart';
 import 'package:default_project/ui/no_internet/no_internet_page.dart';
@@ -38,6 +39,9 @@ class App extends StatelessWidget {
         providers: [
           RepositoryProvider<BooksRepository>(
             create: (_) => BooksRepository(apiProvider: apiProvider),
+          ),
+          RepositoryProvider<PublisherRepository>(
+            create: (_) => PublisherRepository(),
           )
         ],
         child: MultiBlocProvider(providers: [
@@ -54,7 +58,10 @@ class App extends StatelessWidget {
               helperRepository: HelperRepository(apiProvider: apiProvider),
             ),
           ),
-          BlocProvider(create: (BuildContext context) => PublishersCubit()),
+          BlocProvider(create: (BuildContext context) => PublishersCubit(
+            publisherRepository: context.read<PublisherRepository>(),
+            booksRepository: context.read<BooksRepository>(),
+          )),
         ], child: MyApp()));
   }
 }
@@ -64,9 +71,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return MaterialApp(
         builder: (context, child) {
           return StreamBuilder(

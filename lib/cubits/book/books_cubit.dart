@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:default_project/data/models/books/book_model.dart';
 import 'package:default_project/data/repositories/books_repository.dart';
+import 'package:default_project/data/services/api_client.dart';
+import 'package:default_project/data/services/api_provider.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
