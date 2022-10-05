@@ -1,6 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:default_project/cubits/counter/counter_cubit.dart';
+import 'package:default_project/cubits/validator/validator_cubit.dart';
 import 'package:default_project/data/local/storage.dart';
+import 'package:default_project/data/repositories/test_repository.dart';
 import 'package:default_project/ui/no_internet/no_internet_page.dart';
 import 'package:default_project/ui/router.dart';
 import 'package:default_project/utils/constants.dart';
@@ -23,9 +25,20 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(create: (BuildContext context) => CounterCubit())
-    ], child: MyApp());
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<TestRepository>(create: (_) => TestRepository()),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => CounterCubit()),
+          BlocProvider(
+              create: (_) => ValidatorCubit(
+                  testRepository: _.read<TestRepository>())),
+        ],
+        child: MyApp()
+      ),
+    );
   }
 }
 

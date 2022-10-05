@@ -1,4 +1,4 @@
-import 'package:default_project/cubits/counter/counter_cubit.dart';
+import 'package:default_project/cubits/validator/validator_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,29 +16,56 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Home Page"),
       ),
-      body: BlocBuilder<CounterCubit, int>(
-        builder: (context, state) {
-          return Center(
-            child: Text("My number value:$state"),
-          );
-        },
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+      body: Column(
         children: [
-          FloatingActionButton(
-            heroTag: "btn1",
-            onPressed: () => context.read<CounterCubit>().increment(),
-            child: const Icon(Icons.add),
+          BlocBuilder<ValidatorCubit, ValidatorState>(
+            builder: (context, state) {
+              if (state is ValidatePhoneInput) {
+                return Center(
+                  child: Text("My number value:${state.validatedText}"),
+                );
+              }
+              return const SizedBox();
+            },
           ),
-          const SizedBox(height: 20),
-          FloatingActionButton(
-            heroTag: "btn2",
-            onPressed: () => context.read<CounterCubit>().decrement(),
-            child: const Icon(Icons.remove),
+          BlocSelector<ValidatorCubit, ValidatorState, User>(
+            selector: (state) {
+              if (state is ValidatePhoneInput) {
+                return User(
+                    userName: "Abdulloh", age: int.parse(state.validatedText));
+              } else {
+                return User(userName: "Empty username", age: 0);
+              }
+            },
+            builder: (context, newState) {
+              return Text(newState.toString());
+            },
           ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: TextField(
+              onChanged: (value) {
+                context.read<ValidatorCubit>().validateMyPhoneInput(value);
+              },
+            ),
+          )
         ],
       ),
     );
+  }
+}
+
+class User {
+  User({required this.age, required this.userName});
+
+  final String userName;
+  final int age;
+
+  @override
+  String toString() {
+    return '''
+        USERNAME: $userName,
+        AGE: $age
+    ''';
   }
 }
